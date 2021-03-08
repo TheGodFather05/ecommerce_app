@@ -5,13 +5,25 @@ import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.product.Product;
 import com.ecommerce.api.entity.user.User;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class UserProductInterest extends BaseEntity {
 
+  @Column
   private long idUser;
+  @Column
   private long idProduct;
+  @Column
   private long nbrTimes;
+  @Column
   private java.sql.Timestamp lastInterest;
+  @ManyToOne
+  @JoinColumn(name = "id_User")
   private User user;
+  @ManyToOne
+  @JoinColumn(name = "id_Product")
   private Product product;
 
 

@@ -3,8 +3,15 @@ package com.ecommerce.api.entity.user;
 
 import com.ecommerce.api.entity.BaseEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Role extends BaseEntity {
 
+  @Column
   private String name;
 
 

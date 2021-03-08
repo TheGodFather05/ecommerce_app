@@ -4,11 +4,21 @@ package com.ecommerce.api.entity.user;
 import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.product.Product;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class WishList extends BaseEntity {
 
+  @Column
   private long idUser;
+  @Column
   private long idProduct;
+  @ManyToOne
+  @JoinColumn(name = "id_User")
   private User user;
+  @ManyToOne
+  @JoinColumn(name = "id_Product")
   private Product product;
 
 

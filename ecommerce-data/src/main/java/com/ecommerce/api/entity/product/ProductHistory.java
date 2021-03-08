@@ -3,11 +3,20 @@ package com.ecommerce.api.entity.product;
 
 import com.ecommerce.api.entity.BaseEntity;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class ProductHistory extends BaseEntity {
 
+  @Column
   private long idProduct;
+  @Column
   private long quantity;
+  @Column
   private String state;
+  @ManyToOne
+  @JoinColumn(name = "id_Product")
   private Product product;
 
 

@@ -5,13 +5,25 @@ import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.product.Product;
 import com.ecommerce.api.entity.translate.Language;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class ProductTranslate extends BaseEntity {
 
+  @Column
   private String name;
+  @Column
   private String description;
+  @Column
   private long idProduct;
+  @Column
   private long idLanguage;
+  @ManyToOne
+  @JoinColumn(name = "id_Product")
   private Product product;
+  @ManyToOne
+  @JoinColumn(name = "id_Language")
   private Language language;
 
 

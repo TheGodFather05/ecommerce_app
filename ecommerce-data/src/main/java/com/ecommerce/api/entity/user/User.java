@@ -4,23 +4,41 @@ package com.ecommerce.api.entity.user;
 import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.localization.Town;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table
 public class User extends BaseEntity {
 
+  @Column
   private long id;
+  @Column
   private String firstName;
+  @Column
   private String lastName;
+  @Column
   private String email;
+  @Column
   private long telephone;
+  @Column
   private long coountryCode;
+  @Column
   private String username;
+  @Column
   private String password;
+  @Column
   private long idTown;
+  @Column
   private long idRole;
+  @ManyToOne
+  @JoinColumn(name = "id_Role")
   private Role role;
+  @ManyToOne
+  @JoinColumn(name = "id_Town")
   private Town town;
+  @OneToMany(mappedBy = "id_User")
   private Set<UserSettings> userSettings=new HashSet<>();
 
 

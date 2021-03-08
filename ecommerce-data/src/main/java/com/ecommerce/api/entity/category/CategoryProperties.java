@@ -3,10 +3,19 @@ package com.ecommerce.api.entity.category;
 
 import com.ecommerce.api.entity.BaseEntity;
 
+import javax.persistence.*;
+
+
+@Entity
+@Table
 public class CategoryProperties  extends BaseEntity {
 
+  @Column
   private long idCategory;
+  @Column
   private String title;
+  @ManyToOne
+  @JoinColumn(name = "id_Category")
   private Category category;
 
   public long getIdCategory() {

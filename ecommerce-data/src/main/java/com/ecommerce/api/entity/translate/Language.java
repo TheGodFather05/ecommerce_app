@@ -3,9 +3,17 @@ package com.ecommerce.api.entity.translate;
 
 import com.ecommerce.api.entity.BaseEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Language  extends BaseEntity {
 
+  @Column
   private String code;
+  @Column
   private String title;
 
 

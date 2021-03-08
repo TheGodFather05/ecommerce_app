@@ -5,17 +5,35 @@ import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.misc.PaymentMethod;
 import com.ecommerce.api.entity.misc.Shiper;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Sales extends BaseEntity {
 
+  @Column
   private long idCart;
+  @Column
   private double price;
+  @Column
   private java.sql.Timestamp dateCompleted;
+  @Column
   private long idTownShip;
+  @Column
   private double shipmentPrice;
+  @Column
   private long idPaymentMethod;
+  @Column
   private long idShiper;
+  @ManyToOne
+  @JoinColumn(name = "id_payment_method")
   private PaymentMethod paymentMethod;
+  @ManyToOne
+  @JoinColumn(name = "id_shiper")
   private Shiper shiper;
+  @OneToOne
+  @JoinColumn(name = "id_cart")
+  private Cart cart;
 
 
   public long getIdCart() {
@@ -95,5 +113,13 @@ public class Sales extends BaseEntity {
 
   public void setShiper(Shiper shiper) {
     this.shiper = shiper;
+  }
+
+  public Cart getCart() {
+    return cart;
+  }
+
+  public void setCart(Cart cart) {
+    this.cart = cart;
   }
 }

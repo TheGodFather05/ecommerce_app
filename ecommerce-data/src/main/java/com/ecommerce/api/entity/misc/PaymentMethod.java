@@ -3,8 +3,15 @@ package com.ecommerce.api.entity.misc;
 
 import com.ecommerce.api.entity.BaseEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class PaymentMethod  extends BaseEntity {
 
+  @Column
   private String name;
 
 

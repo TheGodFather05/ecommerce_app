@@ -3,10 +3,18 @@ package com.ecommerce.api.entity.category;
 
 import com.ecommerce.api.entity.BaseEntity;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class SubcategoryPropertyValue extends BaseEntity {
 
+  @Column
   private long idProperty;
+  @Column
   private String value;
+  @ManyToOne
+  @JoinColumn(name = "id_Property")
   private  SubcategoryProperties subcategoryProperties;
 
 

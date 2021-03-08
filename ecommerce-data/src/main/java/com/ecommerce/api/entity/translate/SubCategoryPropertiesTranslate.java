@@ -5,12 +5,23 @@ import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.category.SubcategoryProperties;
 import com.ecommerce.api.entity.translate.Language;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class SubCategoryPropertiesTranslate extends BaseEntity {
 
+  @Column
   private String title;
+  @Column
   private long idSubcategoryProperties;
+  @Column
   private long idLanguage;
+  @ManyToOne
+  @JoinColumn(name = "id_Subcategory_Properties")
   private SubcategoryProperties subcategoryProperties;
+  @ManyToOne
+  @JoinColumn(name = "id_Language")
   private Language language;
 
 

@@ -6,21 +6,42 @@ import com.ecommerce.api.entity.user.User;
 import com.ecommerce.api.entity.category.Category;
 import com.ecommerce.api.entity.category.SubCategory;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class Product  extends BaseEntity {
 
+  @Column
   private String name;
+  @Column
   private String code;
+  @Column
   private String description;
+  @Column
   private double price;
+  @Column
   private long quantity;
+  @Column
   private String supplier;
+  @Column
   private long idSubcategory;
+  @Column
   private long idCategory;
+  @Column
   private long idUserCreator;
+  @Column
   private String brand;
+  @Column
   private String state;
+  @ManyToOne
+  @JoinColumn(name = "id_Category")
   private Category category;
+  @ManyToOne
+  @JoinColumn(name = "id_Subcategory")
   private SubCategory subCategory;
+  @ManyToOne
+  @JoinColumn(name = "id_User_Creator")
   private User creator;
 
 

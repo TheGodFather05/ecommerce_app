@@ -5,13 +5,26 @@ import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.misc.Currency;
 import com.ecommerce.api.entity.translate.Language;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 public class UserSettings extends BaseEntity {
 
+  @Column
   private long idUser;
+  @Column
   private long idCurrency;
+  @Column
   private long idLanguage;
+  @ManyToOne
+  @JoinColumn(name = "id_User")
   private User user;
+  @ManyToOne
+  @JoinColumn(name = "id_Currency")
   private Currency currency;
+  @ManyToOne
+  @JoinColumn(name = "id_Language")
   private Language language;
 
   public long getIdUser() {
