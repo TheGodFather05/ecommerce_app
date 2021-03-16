@@ -4,6 +4,8 @@ package com.ecommerce.api.entity.category;
 import com.ecommerce.api.entity.BaseEntity;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -17,6 +19,8 @@ public class CategoryProperties  extends BaseEntity {
   @ManyToOne
   @JoinColumn(name = "id_Category")
   private Category category;
+  @OneToMany(mappedBy = "id_Property")
+  private Set<CategoryPropertyValue>values=new HashSet<>();
 
   public long getIdCategory() {
     return idCategory;

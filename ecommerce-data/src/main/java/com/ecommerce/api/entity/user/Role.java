@@ -2,6 +2,7 @@ package com.ecommerce.api.entity.user;
 
 
 import com.ecommerce.api.entity.BaseEntity;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Role extends BaseEntity {
+public class Role extends BaseEntity implements GrantedAuthority {
 
   @Column
   private String name;
@@ -23,4 +24,8 @@ public class Role extends BaseEntity {
     this.name = name;
   }
 
+    @Override
+    public String getAuthority() {
+        return name;
+    }
 }
