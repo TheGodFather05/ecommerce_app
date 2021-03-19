@@ -1,7 +1,9 @@
 package com.ecommerce.api.controller;
 
+import com.ecommerce.api.data.user.UserRepository;
 import com.ecommerce.api.entity.authentication.AuthenticationRequest;
 import com.ecommerce.api.entity.authentication.AuthenticationResponse;
+import com.ecommerce.api.entity.user.User;
 import com.ecommerce.api.service.CustomUserDetailsService;
 import com.ecommerce.api.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +29,10 @@ public class LoginController {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
-    @PostMapping("/")
+    @Autowired
+    private UserRepository userRepository;
+
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody AuthenticationRequest request) throws Exception {
 
         try {
@@ -41,6 +46,17 @@ public class LoginController {
         final String jwt = jwtUtil.generateToken(userDetailsService.loadUserByUsername(request.getUsername()));
 
         String username, password;
+
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody User user) throws Exception {
+
+        User savedUser = userRepository.save(user);
+
+        final String jwt = jwtUtil.generateToken(userDetailsService.loadUserByUsername(savedUser.getUsername()));
+
 
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }

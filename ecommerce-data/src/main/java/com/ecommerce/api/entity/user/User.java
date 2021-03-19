@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -23,16 +24,20 @@ public class User extends BaseEntity implements UserDetails {
   @Column
   private String firstName;
   @Column
+  @NotBlank(message = "Last name is required")
   private String lastName;
   @Column
+  @NotBlank(message = "email is required")
   private String email;
   @Column
   private long telephone;
   @Column
   private long coountryCode;
   @Column
+  @NotBlank(message = "Please provide user name ")
   private String username;
   @Column
+  @NotBlank(message = "Provide valid password please")
   private String password;
   @Column
   private long idTown;
