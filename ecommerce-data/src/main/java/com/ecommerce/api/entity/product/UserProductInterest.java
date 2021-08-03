@@ -11,24 +11,24 @@ import javax.persistence.*;
 @Table
 public class UserProductInterest extends BaseEntity {
 
-  @Column
+ /* @Column
   private long idUser;
   @Column
-  private long idProduct;
+  private long idProduct;*/
   @Column
   private long nbrTimes;
   @Column
   private java.sql.Timestamp lastInterest;
-  @ManyToOne
+  @ManyToOne(targetEntity = User.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_User")
   private User user;
-  @ManyToOne
+  @ManyToOne(targetEntity = Product.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_Product")
   private Product product;
 
 
 
-  public long getIdUser() {
+  /*public long getIdUser() {
     return idUser;
   }
 
@@ -43,7 +43,7 @@ public class UserProductInterest extends BaseEntity {
 
   public void setIdProduct(long idProduct) {
     this.idProduct = idProduct;
-  }
+  }*/
 
 
   public long getNbrTimes() {

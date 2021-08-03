@@ -9,32 +9,32 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class CategoryTranslate  extends BaseEntity {
+public class CategoryTranslate extends BaseEntity {
 
-  @Column
-  private String title;
-  @Column
-  private long idCategory;
-  @Column
-  private long idLanguage;
-  @ManyToOne
-  @JoinColumn(name = "id_Category")
-  private Category category;
-  @ManyToOne
-  @JoinColumn(name = "id_Language")
-  private Language language;
-
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    @Column
+    private String title;
+    /*@Column
+    private long idCategory;
+    @Column
+    private long idLanguage;*/
+    @ManyToOne(targetEntity = Category.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Category")
+    private Category category;
+    @ManyToOne(targetEntity = Language.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Language")
+    private Language language;
 
 
-  public long getIdCategory() {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+
+  /*public long getIdCategory() {
     return idCategory;
   }
 
@@ -49,23 +49,23 @@ public class CategoryTranslate  extends BaseEntity {
 
   public void setIdLanguage(long idLanguage) {
     this.idLanguage = idLanguage;
-  }
+  }*/
 
 
-  public Category getCategory() {
-    return category;
-  }
+    public Category getCategory() {
+        return category;
+    }
 
-  public void setCategory(Category category) {
-    this.category = category;
-  }
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
 
-  public Language getLanguage() {
-    return language;
-  }
+    public Language getLanguage() {
+        return language;
+    }
 
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 }

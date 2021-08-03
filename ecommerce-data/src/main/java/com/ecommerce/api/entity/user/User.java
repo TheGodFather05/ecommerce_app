@@ -39,17 +39,17 @@ public class User extends BaseEntity implements UserDetails {
   @Column
   @NotBlank(message = "Provide valid password please")
   private String password;
-  @Column
+  /*@Column
   private long idTown;
   @Column
-  private long idRole;
-  @ManyToOne
+  private long idRole;*/
+  @ManyToOne(targetEntity = Role.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_Role")
   private Role role;
-  @ManyToOne
+  @ManyToOne(targetEntity = Town.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_Town")
   private Town town;
-  @OneToMany(mappedBy = "id_User")
+  @OneToMany(mappedBy = "user",targetEntity = UserSettings.class,cascade = CascadeType.ALL)
   private Set<UserSettings> userSettings=new HashSet<>();
 
 
@@ -141,7 +141,8 @@ public class User extends BaseEntity implements UserDetails {
   }
 
 
-  public long getIdTown() {
+
+  /*public long getIdTown() {
     return idTown;
   }
 
@@ -156,6 +157,6 @@ public class User extends BaseEntity implements UserDetails {
 
   public void setIdRole(long idRole) {
     this.idRole = idRole;
-  }
+  }*/
 
 }

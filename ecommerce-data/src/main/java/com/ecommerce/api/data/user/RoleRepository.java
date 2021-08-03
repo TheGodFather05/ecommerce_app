@@ -1,8 +1,9 @@
 package com.ecommerce.api.data.user;
 
 
+import com.ecommerce.api.entity.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoleRepository<T> extends JpaRepository<T,Long> {
+public interface RoleRepository extends JpaRepository<Role,Long> {
 
 }

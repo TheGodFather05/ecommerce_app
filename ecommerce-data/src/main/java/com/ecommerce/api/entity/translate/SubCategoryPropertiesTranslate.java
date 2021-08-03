@@ -11,30 +11,30 @@ import javax.persistence.*;
 @Table
 public class SubCategoryPropertiesTranslate extends BaseEntity {
 
-  @Column
-  private String title;
-  @Column
-  private long idSubcategoryProperties;
-  @Column
-  private long idLanguage;
-  @ManyToOne
-  @JoinColumn(name = "id_Subcategory_Properties")
-  private SubcategoryProperties subcategoryProperties;
-  @ManyToOne
-  @JoinColumn(name = "id_Language")
-  private Language language;
+    @Column
+    private String title;
+    /* @Column
+     private long idSubcategoryProperties;
+     @Column
+     private long idLanguage;*/
+    @ManyToOne(targetEntity = SubcategoryProperties.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Subcategory_Properties")
+    private SubcategoryProperties subcategoryProperties;
+    @ManyToOne(targetEntity = Language.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Language")
+    private Language language;
 
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
 
-  public long getIdSubcategoryProperties() {
+  /*public long getIdSubcategoryProperties() {
     return idSubcategoryProperties;
   }
 
@@ -49,22 +49,22 @@ public class SubCategoryPropertiesTranslate extends BaseEntity {
 
   public void setIdLanguage(long idLanguage) {
     this.idLanguage = idLanguage;
-  }
+  }*/
 
 
-  public SubcategoryProperties getSubcategoryProperties() {
-    return subcategoryProperties;
-  }
+    public SubcategoryProperties getSubcategoryProperties() {
+        return subcategoryProperties;
+    }
 
-  public void setSubcategoryProperties(SubcategoryProperties subcategoryProperties) {
-    this.subcategoryProperties = subcategoryProperties;
-  }
+    public void setSubcategoryProperties(SubcategoryProperties subcategoryProperties) {
+        this.subcategoryProperties = subcategoryProperties;
+    }
 
-  public Language getLanguage() {
-    return language;
-  }
+    public Language getLanguage() {
+        return language;
+    }
 
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 }

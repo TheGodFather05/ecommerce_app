@@ -9,24 +9,24 @@ import javax.persistence.*;
 @Table
 public class ProductHistory extends BaseEntity {
 
-  @Column
-  private long idProduct;
+  /*@Column
+  private long idProduct;*/
   @Column
   private long quantity;
   @Column
   private String state;
-  @ManyToOne
+  @ManyToOne(targetEntity = Product.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_Product")
   private Product product;
 
 
-  public long getIdProduct() {
+  /*public long getIdProduct() {
     return idProduct;
   }
 
   public void setIdProduct(long idProduct) {
     this.idProduct = idProduct;
-  }
+  }*/
 
 
   public long getQuantity() {

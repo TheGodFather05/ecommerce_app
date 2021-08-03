@@ -10,17 +10,17 @@ import javax.persistence.*;
 @Table(name = "CartProduct")
 public class CartProduct  extends BaseEntity {
 
-  @Column
+  @Column(name = "cart_id")
   private long cartId;
-  @Column
-  private long productId;
+  /*@Column(name = "product_id")
+  private long productId;*/
   @Column
   private long quantiti;
   @Column
   private double unitPrice;
   @Column
   private double price;
-  @ManyToOne
+  @ManyToOne(targetEntity = Product.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "product_id")
   private Product product;
 
@@ -34,14 +34,14 @@ public class CartProduct  extends BaseEntity {
   }
 
 
-  public long getProductId() {
+/*  public long getProductId() {
     return productId;
   }
 
   public void setProductId(long productId) {
     this.productId = productId;
   }
-
+*/
 
   public long getQuantiti() {
     return quantiti;

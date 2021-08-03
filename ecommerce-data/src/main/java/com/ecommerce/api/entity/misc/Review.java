@@ -11,41 +11,41 @@ import javax.persistence.*;
 @Table
 public class Review extends BaseEntity {
 
-  @Column
-  private double review;
-  @Column
-  private String comment;
-  @Column
-  private long idProduct;
-  @Column
-  private long idUser;
-  @ManyToOne
-  @JoinColumn(name = "id_Product")
-  private Product product;
-  @ManyToOne
-  @JoinColumn(name = "id_User")
-  private User user;
+    @Column
+    private double review;
+    @Column
+    private String comment;
+    /*@Column
+    private long idProduct;
+    @Column
+    private long idUser;*/
+    @ManyToOne(targetEntity = Product.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Product")
+    private Product product;
+    @ManyToOne(targetEntity = User.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_User")
+    private User user;
 
 
-  public double getReview() {
-    return review;
-  }
+    public double getReview() {
+        return review;
+    }
 
-  public void setReview(double review) {
-    this.review = review;
-  }
-
-
-  public String getComment() {
-    return comment;
-  }
-
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
+    public void setReview(double review) {
+        this.review = review;
+    }
 
 
-  public long getIdProduct() {
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+
+  /*public long getIdProduct() {
     return idProduct;
   }
 
@@ -60,22 +60,22 @@ public class Review extends BaseEntity {
 
   public void setIdUser(long idUser) {
     this.idUser = idUser;
-  }
+  }*/
 
 
-  public Product getProduct() {
-    return product;
-  }
+    public Product getProduct() {
+        return product;
+    }
 
-  public void setProduct(Product product) {
-    this.product = product;
-  }
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
-  public User getUser() {
-    return user;
-  }
+    public User getUser() {
+        return user;
+    }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
+    public void setUser(User user) {
+        this.user = user;
+    }
 }

@@ -2,6 +2,7 @@ package com.ecommerce.api.entity.cart;
 
 
 import com.ecommerce.api.entity.BaseEntity;
+import com.ecommerce.api.entity.localization.Town;
 import com.ecommerce.api.entity.misc.PaymentMethod;
 import com.ecommerce.api.entity.misc.Shiper;
 
@@ -11,38 +12,41 @@ import javax.persistence.*;
 @Table
 public class Sales extends BaseEntity {
 
-  @Column
-  private long idCart;
+  /*@Column(name = "cart_id")
+  private long cartId;*/
   @Column
   private double price;
   @Column
   private java.sql.Timestamp dateCompleted;
-  @Column
-  private long idTownShip;
+ /* @Column
+  private long townShipId;*/
   @Column
   private double shipmentPrice;
-  @Column
-  private long idPaymentMethod;
-  @Column
-  private long idShiper;
-  @ManyToOne
+  /*@Column
+  private long idPaymentMethod;*/
+  /*@Column
+  private long idShiper;*/
+  @ManyToOne(targetEntity = Town.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+  @JoinColumn(name = "town_ship_id")
+  private Town town;
+  @ManyToOne(targetEntity = PaymentMethod.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_payment_method")
   private PaymentMethod paymentMethod;
-  @ManyToOne
+  @ManyToOne(targetEntity = Shiper.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_shiper")
   private Shiper shiper;
   @OneToOne
-  @JoinColumn(name = "id_cart")
+  @JoinColumn(name = "cart_id")
   private Cart cart;
 
 
-  public long getIdCart() {
-    return idCart;
+  /*public long getCartId() {
+    return cartId;
   }
 
-  public void setIdCart(long idCart) {
-    this.idCart = idCart;
-  }
+  public void setCartId(long idCart) {
+    this.cartId = idCart;
+  }*/
 
 
   public double getPrice() {
@@ -63,14 +67,21 @@ public class Sales extends BaseEntity {
   }
 
 
-  public long getIdTownShip() {
-    return idTownShip;
+  /*public long getTownShipId() {
+    return townShipId;
   }
 
-  public void setIdTownShip(long idTownShip) {
-    this.idTownShip = idTownShip;
+  public void setTownShipId(long idTownShip) {
+    this.townShipId = idTownShip;
+  }*/
+
+  public Town getTown() {
+    return town;
   }
 
+  public void setTown(Town town) {
+    this.town = town;
+  }
 
   public double getShipmentPrice() {
     return shipmentPrice;
@@ -81,22 +92,22 @@ public class Sales extends BaseEntity {
   }
 
 
-  public long getIdPaymentMethod() {
+  /*public long getIdPaymentMethod() {
     return idPaymentMethod;
   }
 
   public void setIdPaymentMethod(long idPaymentMethod) {
     this.idPaymentMethod = idPaymentMethod;
-  }
+  }*/
 
 
-  public long getIdShiper() {
+  /*public long getIdShiper() {
     return idShiper;
   }
 
   public void setIdShiper(long idShiper) {
     this.idShiper = idShiper;
-  }
+  }*/
 
 
   public PaymentMethod getPaymentMethod() {

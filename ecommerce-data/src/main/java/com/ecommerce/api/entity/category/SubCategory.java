@@ -13,26 +13,27 @@ import java.util.Set;
 @Table
 public class SubCategory extends BaseEntity {
 
-    @Column
-    private long idCategory;
+    /*@Column
+    private long idCategory;*/
     @Column
     private String title;
-    @ManyToOne
+    @ManyToOne(targetEntity = Category.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_Category")
     private Category category;
-    @OneToMany(mappedBy = "id_Subcategory")
+    @OneToMany(mappedBy = "subCategory", targetEntity = SubcategoryProperties.class
+            , cascade = CascadeType.ALL)
     private Set<SubcategoryProperties> properties = new HashSet<>();
-    @OneToMany(mappedBy = "id_Subcategory")
+    @OneToMany(mappedBy = "subCategory")
     private Set<Product> products = new HashSet<>();
 
 
-    public long getIdCategory() {
+    /*public long getIdCategory() {
         return idCategory;
     }
 
     public void setIdCategory(long idCategory) {
         this.idCategory = idCategory;
-    }
+    }*/
 
 
     public String getTitle() {
@@ -49,5 +50,21 @@ public class SubCategory extends BaseEntity {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public Set<SubcategoryProperties> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Set<SubcategoryProperties> properties) {
+        this.properties = properties;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 }

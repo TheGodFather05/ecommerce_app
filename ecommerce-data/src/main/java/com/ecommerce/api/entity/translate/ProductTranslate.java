@@ -11,41 +11,41 @@ import javax.persistence.*;
 @Table
 public class ProductTranslate extends BaseEntity {
 
-  @Column
-  private String name;
-  @Column
-  private String description;
-  @Column
-  private long idProduct;
-  @Column
-  private long idLanguage;
-  @ManyToOne
-  @JoinColumn(name = "id_Product")
-  private Product product;
-  @ManyToOne
-  @JoinColumn(name = "id_Language")
-  private Language language;
+    @Column
+    private String name;
+    @Column
+    private String description;
+    /*@Column
+    private long idProduct;
+    @Column
+    private long idLanguage;*/
+    @ManyToOne(targetEntity = Product.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Product")
+    private Product product;
+    @ManyToOne(targetEntity = Language.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Language")
+    private Language language;
 
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
-  public long getIdProduct() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+  /*public long getIdProduct() {
     return idProduct;
   }
 
@@ -60,22 +60,22 @@ public class ProductTranslate extends BaseEntity {
 
   public void setIdLanguage(long idLanguage) {
     this.idLanguage = idLanguage;
-  }
+  }*/
 
 
-  public Product getProduct() {
-    return product;
-  }
+    public Product getProduct() {
+        return product;
+    }
 
-  public void setProduct(Product product) {
-    this.product = product;
-  }
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
-  public Language getLanguage() {
-    return language;
-  }
+    public Language getLanguage() {
+        return language;
+    }
 
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 }

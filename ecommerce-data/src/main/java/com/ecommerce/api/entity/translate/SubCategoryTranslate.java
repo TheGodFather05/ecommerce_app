@@ -11,30 +11,30 @@ import javax.persistence.*;
 @Table
 public class SubCategoryTranslate extends BaseEntity {
 
-  @Column
-  private String title;
-  @Column
-  private long idSubcategory;
-  @Column
-  private long idLanguage;
-  @ManyToOne
-  @JoinColumn(name = "id_Subcategory")
-  private SubCategory subCategory;
-  @ManyToOne
-  @JoinColumn(name = "id_Language")
-  private Language language;
+    @Column
+    private String title;
+    /*@Column
+    private long idSubcategory;
+    @Column
+    private long idLanguage;*/
+    @ManyToOne(targetEntity = SubCategory.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Subcategory")
+    private SubCategory subCategory;
+    @ManyToOne(targetEntity = Language.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Language")
+    private Language language;
 
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
 
-  public long getIdSubcategory() {
+  /*public long getIdSubcategory() {
     return idSubcategory;
   }
 
@@ -49,23 +49,23 @@ public class SubCategoryTranslate extends BaseEntity {
 
   public void setIdLanguage(long idLanguage) {
     this.idLanguage = idLanguage;
-  }
+  }*/
 
 
-  public SubCategory getSubCategory() {
-    return subCategory;
-  }
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
 
-  public void setSubCategory(SubCategory subCategory) {
-    this.subCategory = subCategory;
-  }
+    public void setSubCategory(SubCategory subCategory) {
+        this.subCategory = subCategory;
+    }
 
-  public Language getLanguage() {
-    return language;
-  }
+    public Language getLanguage() {
+        return language;
+    }
 
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 
 }

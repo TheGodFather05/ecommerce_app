@@ -10,19 +10,19 @@ import javax.persistence.*;
 @Table
 public class WishList extends BaseEntity {
 
-  @Column
-  private long idUser;
-  @Column
-  private long idProduct;
-  @ManyToOne
-  @JoinColumn(name = "id_User")
-  private User user;
-  @ManyToOne
-  @JoinColumn(name = "id_Product")
-  private Product product;
+    /*@Column
+    private long idUser;
+    @Column
+    private long idProduct;*/
+    @ManyToOne(targetEntity = User.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_User")
+    private User user;
+    @ManyToOne(targetEntity = Product.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Product")
+    private Product product;
 
 
-  public long getIdUser() {
+  /*public long getIdUser() {
     return idUser;
   }
 
@@ -37,22 +37,22 @@ public class WishList extends BaseEntity {
 
   public void setIdProduct(long idProduct) {
     this.idProduct = idProduct;
-  }
+  }*/
 
 
-  public User getUser() {
-    return user;
-  }
+    public User getUser() {
+        return user;
+    }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-  public Product getProduct() {
-    return product;
-  }
+    public Product getProduct() {
+        return product;
+    }
 
-  public void setProduct(Product product) {
-    this.product = product;
-  }
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

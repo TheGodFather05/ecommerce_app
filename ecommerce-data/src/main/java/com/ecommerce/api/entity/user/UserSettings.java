@@ -11,23 +11,23 @@ import javax.persistence.*;
 @Table
 public class UserSettings extends BaseEntity {
 
-  @Column
-  private long idUser;
-  @Column
-  private long idCurrency;
-  @Column
-  private long idLanguage;
-  @ManyToOne
-  @JoinColumn(name = "id_User")
-  private User user;
-  @ManyToOne
-  @JoinColumn(name = "id_Currency")
-  private Currency currency;
-  @ManyToOne
-  @JoinColumn(name = "id_Language")
-  private Language language;
+    /*@Column
+    private long idUser;
+    @Column
+    private long idCurrency;
+    @Column
+    private long idLanguage;*/
+    @ManyToOne(targetEntity = User.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_User")
+    private User user;
+    @ManyToOne(targetEntity = Currency.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Currency")
+    private Currency currency;
+    @ManyToOne(targetEntity = Language.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "id_Language")
+    private Language language;
 
-  public long getIdUser() {
+  /*public long getIdUser() {
     return idUser;
   }
 
@@ -51,30 +51,30 @@ public class UserSettings extends BaseEntity {
 
   public void setIdLanguage(long idLanguage) {
     this.idLanguage = idLanguage;
-  }
+  }*/
 
 
-  public User getUser() {
-    return user;
-  }
+    public User getUser() {
+        return user;
+    }
 
-  public void setUser(User user) {
-    this.user = user;
-  }
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-  public Currency getCurrency() {
-    return currency;
-  }
+    public Currency getCurrency() {
+        return currency;
+    }
 
-  public void setCurrency(Currency currency) {
-    this.currency = currency;
-  }
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
 
-  public Language getLanguage() {
-    return language;
-  }
+    public Language getLanguage() {
+        return language;
+    }
 
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
 }

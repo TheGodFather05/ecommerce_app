@@ -9,22 +9,22 @@ import javax.persistence.*;
 @Table
 public class SubcategoryPropertyValue extends BaseEntity {
 
-  @Column
-  private long idProperty;
+  /*@Column
+  private long idProperty;*/
   @Column
   private String value;
-  @ManyToOne
+  @ManyToOne(targetEntity = SubcategoryProperties.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_Property")
   private  SubcategoryProperties subcategoryProperties;
 
 
-  public long getIdProperty() {
+  /*public long getIdProperty() {
     return idProperty;
   }
 
   public void setIdProperty(long idProperty) {
     this.idProperty = idProperty;
-  }
+  }*/
 
 
   public String getValue() {

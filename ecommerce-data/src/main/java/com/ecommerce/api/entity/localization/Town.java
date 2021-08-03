@@ -10,38 +10,38 @@ import javax.persistence.*;
 @Table
 public class Town extends BaseEntity {
 
-  @Column
-  private String name;
-  @Column
-  private long idCountry;
-  @ManyToOne
-  @JoinColumn(name = "id_Country")
-  private Country country;
+    @Column
+    private String name;
+    /*@Column
+    private long idCountry;*/
+    @ManyToOne(targetEntity = Country.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "country_id")
+    private Country country;
 
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
-  public long getIdCountry() {
+  /*public long getIdCountry() {
     return idCountry;
   }
 
   public void setIdCountry(long idCountry) {
     this.idCountry = idCountry;
-  }
+  }*/
 
 
-  public Country getCountry() {
-    return country;
-  }
+    public Country getCountry() {
+        return country;
+    }
 
-  public void setCountry(Country country) {
-    this.country = country;
-  }
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 }

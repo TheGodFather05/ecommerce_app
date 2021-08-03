@@ -13,7 +13,7 @@ public class Country extends BaseEntity {
 
   @Column
   private String name;
-  @OneToMany(mappedBy = "id_country")
+  @OneToMany(mappedBy = "country",targetEntity = Town.class)
   private Set<Town> towns=new HashSet<>();
 
 

@@ -25,30 +25,28 @@ public class Product extends BaseEntity {
     private long quantity;
     @Column
     private String supplier;
-    @Column
+    /*@Column
     private long idSubcategory;
     @Column
     private long idCategory;
     @Column
-    private long idUserCreator;
+    private long idUserCreator;*/
     @Column
     private String brand;
     @Column
     private String state;
-    @ManyToOne
+    @ManyToOne(targetEntity = Category.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_Category")
     private Category category;
-    @ManyToOne
+    @ManyToOne(targetEntity = SubCategory.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_Subcategory")
     private SubCategory subCategory;
-    @ManyToOne
+    @ManyToOne(targetEntity = User.class, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "id_User_Creator")
     private User creator;
-    @OneToMany
-    @JoinColumn(name = "id_user")
+    @OneToMany(mappedBy = "product", targetEntity = ProductSubcategoryProperties.class)
     private Set<ProductSubcategoryProperties> subcategoryProperties = new HashSet<>();
-    @OneToMany
-    @JoinColumn(name = "id_user")
+    @OneToMany(mappedBy = "product", targetEntity = ProductCategoryProperty.class)
     private Set<ProductCategoryProperty> categoryProperties = new HashSet<>();
 
 
@@ -106,7 +104,7 @@ public class Product extends BaseEntity {
     }
 
 
-    public long getIdSubcategory() {
+    /*public long getIdSubcategory() {
         return idSubcategory;
     }
 
@@ -130,7 +128,7 @@ public class Product extends BaseEntity {
 
     public void setIdUserCreator(long idUserCreator) {
         this.idUserCreator = idUserCreator;
-    }
+    }*/
 
 
     public String getBrand() {
