@@ -1,6 +1,5 @@
 package com.ecommerce.api.entity.user;
 
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -25,15 +24,24 @@ public class UserValidator implements Validator {
 
         User user = (User) target;
 
+
         if (!validateEmail(user.getEmail())) {
-            errors.rejectValue("email", "", "Invalid email! Please provide a valid email");
+            errors.rejectValue("email","","Invalid email! Please provide a valid email");
         }
 
-        if (!validatePassword(user.getPassword())) {
-            errors.rejectValue("password", ""
-                    , "password should contain uppercase and lowercase letters, numbers and should be at least 4 characters ");
+        /*if (!validatePassword(user.getPassword())) {
+            errors.rejectValue("password","",
+                    "password should contain uppercase and lowercase letters, numbers and should be at least 4 characters ");
+        }*/
+
+        if (!validatePhoneNumber(user.getTelephone())) {
+            errors.rejectValue("telephone","",
+                    "The number of digits of a telephone number should be greather than 5 and less than 15");
         }
 
+        if (!validateCountryCode(user.getCountryCode())) {
+
+        }
     }
 
     public boolean validateEmail(String email) {
@@ -48,5 +56,14 @@ public class UserValidator implements Validator {
         Pattern pattern = Pattern.compile(passwordRegex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
+    }
+
+    public boolean validatePhoneNumber(long telephone) {
+        int length = String.valueOf(telephone).length();
+        return length > 5 && length <= 15;
+    }
+
+    public boolean validateCountryCode(int countryCode) {
+        return countryCode <= 3;
     }
 }

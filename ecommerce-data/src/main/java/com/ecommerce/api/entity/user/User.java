@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -30,9 +31,11 @@ public class User extends BaseEntity implements UserDetails {
   @NotBlank(message = "email is required")
   private String email;
   @Column
+  @Positive(message = "the phone number cannot be negative")
   private long telephone;
   @Column
-  private long coountryCode;
+  @Positive(message = "country code cannot be negative")
+  private int countryCode;
   @Column
   @NotBlank(message = "Please provide user name ")
   private String username;
@@ -89,12 +92,12 @@ public class User extends BaseEntity implements UserDetails {
   }
 
 
-  public long getCoountryCode() {
-    return coountryCode;
+  public int getCountryCode() {
+    return countryCode;
   }
 
-  public void setCoountryCode(long coountryCode) {
-    this.coountryCode = coountryCode;
+  public void setCountryCode(int coountryCode) {
+    this.countryCode = coountryCode;
   }
 
 
