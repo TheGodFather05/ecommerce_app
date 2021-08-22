@@ -1,7 +1,12 @@
 package com.ecommerce.api.entity;
 
+import com.ecommerce.api.entity.cart.CartProduct;
+import com.ecommerce.api.entity.misc.Media;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @MappedSuperclass
 public class BaseEntity implements Serializable {
@@ -18,4 +23,6 @@ public class BaseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+
 }

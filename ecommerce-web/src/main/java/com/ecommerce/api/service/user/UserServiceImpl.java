@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
     public UserDetails registerUser(User user) throws Exception{
         if(userRepository.findByEmail(user.getEmail()).orElse(null)!=null)
-            throw  new Exception("Email already exists for another User");
+            throw  new Exception("Email already exists for another User account");
 
         if(userRepository.findByUsername(user.getUsername()).orElse(null)!=null)
             throw new Exception("This username is already taken please try with another one");

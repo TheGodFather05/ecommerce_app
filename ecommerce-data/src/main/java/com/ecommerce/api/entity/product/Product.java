@@ -3,6 +3,7 @@ package com.ecommerce.api.entity.product;
 
 import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.category.*;
+import com.ecommerce.api.entity.misc.Media;
 import com.ecommerce.api.entity.user.User;
 
 import javax.persistence.*;
@@ -48,6 +49,9 @@ public class Product extends BaseEntity {
     private Set<ProductSubcategoryProperties> subcategoryProperties = new HashSet<>();
     @OneToMany(mappedBy = "product", targetEntity = ProductCategoryProperty.class)
     private Set<ProductCategoryProperty> categoryProperties = new HashSet<>();
+    @OneToMany(targetEntity = Media.class, mappedBy = "product"
+            , cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Set<Media> medias=new HashSet<>();
 
 
     public String getName() {
@@ -188,5 +192,13 @@ public class Product extends BaseEntity {
 
     public void setCategoryProperties(Set<ProductCategoryProperty> categoryProperties) {
         this.categoryProperties = categoryProperties;
+    }
+
+    public Set<Media> getMedias() {
+        return medias;
+    }
+
+    public void setMedias(Set<Media> medias) {
+        this.medias = medias;
     }
 }
