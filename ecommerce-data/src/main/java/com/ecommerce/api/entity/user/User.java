@@ -46,9 +46,10 @@ public class User extends BaseEntity implements UserDetails {
   private long idTown;
   @Column
   private long idRole;*/
-  @ManyToOne(targetEntity = Role.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-  @JoinColumn(name = "id_Role")
-  private Role role;
+  @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE},fetch = FetchType.EAGER)
+  @JoinTable(name = "user_role",joinColumns = {@JoinColumn(name = "id_user")},
+  inverseJoinColumns = {@JoinColumn(name = "id_role")})
+  private Set<Role> roles=new HashSet<>();
   @ManyToOne(targetEntity = Town.class,cascade = {CascadeType.PERSIST,CascadeType.MERGE})
   @JoinColumn(name = "id_Town")
   private Town town;
@@ -129,10 +130,17 @@ public class User extends BaseEntity implements UserDetails {
     this.username = username;
   }
 
+  public Set<Role> getRoles() {
+    return roles;
+  }
+
+  public void setRoles(Set<Role> roles) {
+    this.roles = roles;
+  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Arrays.asList(role);
+    return roles;
   }
 
   public String getPassword() {

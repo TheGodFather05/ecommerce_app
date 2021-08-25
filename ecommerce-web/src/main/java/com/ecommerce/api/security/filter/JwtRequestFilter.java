@@ -1,5 +1,7 @@
 package com.ecommerce.api.security.filter;
 
+import com.ecommerce.api.data.user.UserRepository;
+import com.ecommerce.api.entity.user.User;
 import com.ecommerce.api.service.CustomUserDetailsService;
 import com.ecommerce.api.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private CustomUserDetailsService userDetailsService;
 
     @Autowired
+    UserRepository userRepository;
+
+    @Autowired
     private JwtUtil jwtUtil;
 
     @Override
@@ -44,6 +49,8 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+            User user=userRepository.findByUsername(userDetails.getUsername()).get();
 
             if (jwtUtil.validateToken(jwt, userDetails)) {
                 UsernamePasswordAuthenticationToken authenticationToken =

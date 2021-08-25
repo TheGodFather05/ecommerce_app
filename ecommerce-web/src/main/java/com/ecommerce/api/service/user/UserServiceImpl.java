@@ -1,7 +1,9 @@
 package com.ecommerce.api.service.user;
 
+import com.ecommerce.api.data.user.RoleRepository;
 import com.ecommerce.api.data.user.UserRepository;
 import com.ecommerce.api.entity.authentication.AuthenticationRequest;
+import com.ecommerce.api.entity.user.Role;
 import com.ecommerce.api.entity.user.User;
 import com.ecommerce.api.service.CustomUserDetailsService;
 import com.ecommerce.api.util.JwtUtil;
@@ -13,6 +15,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -21,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -38,6 +46,8 @@ public class UserServiceImpl implements UserService {
         if(userRepository.findByUsername(user.getUsername()).orElse(null)!=null)
             throw new Exception("This username is already taken please try with another one");
 
+        Role role=roleRepository.findByName("user").get();
+        user.getRoles().add(role);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userDetailsService.loadUserByUsername(userRepository.save(user).getUsername());
     }

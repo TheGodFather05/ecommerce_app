@@ -44,7 +44,7 @@ public class LoginController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
     }
 
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<?> register(@RequestBody User user) throws Exception {
 
         UserDetails savedUser = userService.registerUser(user);

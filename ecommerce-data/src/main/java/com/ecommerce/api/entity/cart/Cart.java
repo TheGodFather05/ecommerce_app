@@ -39,7 +39,6 @@ public class Cart extends BaseEntity {
         this.userId = idUser;
     }*/
 
-
     public boolean getSold() {
         return sold;
     }
@@ -66,11 +65,10 @@ public class Cart extends BaseEntity {
     }
 
     public void setState(String state) {
-        if(Arrays.stream(CartState.values())
-                .anyMatch(x->x.label.equalsIgnoreCase(state)))
-        this.state = state;
+        if (Arrays.stream(CartState.values())
+                .anyMatch(x -> x.label.equalsIgnoreCase(state)))
+            this.state = state;
     }
-
 
     public User getUser() {
         return user;
