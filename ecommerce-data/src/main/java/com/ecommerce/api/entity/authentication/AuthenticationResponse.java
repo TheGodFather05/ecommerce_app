@@ -1,7 +1,11 @@
 package com.ecommerce.api.entity.authentication;
 
 import com.ecommerce.api.entity.user.User;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class AuthenticationResponse {
 
     private String token;
@@ -10,14 +14,6 @@ public class AuthenticationResponse {
     }
 
     public AuthenticationResponse(String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
         this.token = token;
     }
 

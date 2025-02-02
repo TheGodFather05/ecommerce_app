@@ -3,6 +3,8 @@ package com.ecommerce.api.entity.user;
 
 import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.localization.Town;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,145 +19,67 @@ import java.util.Set;
 
 @Entity
 @Table
+@Getter
+@Setter
 public class User extends BaseEntity implements UserDetails {
 
-  @Column
-  private long id;
-  @Column
-  private String firstName;
-  @Column
-  @NotBlank(message = "Last name is required")
-  private String lastName;
-  @Column
-  @NotBlank(message = "email is required")
-  private String email;
-  @Column
-  private long telephone;
-  @Column
-  private long coountryCode;
-  @Column
-  @NotBlank(message = "Please provide user name ")
-  private String username;
-  @Column
-  @NotBlank(message = "Provide valid password please")
-  private String password;
-  @Column
-  private long idTown;
-  @Column
-  private long idRole;
-  @ManyToOne
-  @JoinColumn(name = "id_Role")
-  private Role role;
-  @ManyToOne
-  @JoinColumn(name = "id_Town")
-  private Town town;
-  @OneToMany(mappedBy = "id_User")
-  private Set<UserSettings> userSettings=new HashSet<>();
+    @Column
+    private long id;
+    @Column
+    private String firstName;
+    @Column
+    @NotBlank(message = "Last name is required")
+    private String lastName;
+    @Column
+    @NotBlank(message = "email is required")
+    private String email;
+    @Column
+    private long telephone;
+    @Column
+    private long coountryCode;
+    @Column
+    @NotBlank(message = "Please provide user name ")
+    private String username;
+    @Column
+    @NotBlank(message = "Provide valid password please")
+    private String password;
+    @Column
+    private long idTown;
+    @Column
+    private long idRole;
+    @ManyToOne
+    @JoinColumn(name = "id_Role")
+    private Role role;
+    @ManyToOne
+    @JoinColumn(name = "id_Town")
+    private Town town;
+    @OneToMany(mappedBy = "id_User")
+    private Set<UserSettings> userSettings = new HashSet<>();
 
 
-  public String getFirstName() {
-    return firstName;
-  }
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
 
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
 
-  public String getLastName() {
-    return lastName;
-  }
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-
-  public long getTelephone() {
-    return telephone;
-  }
-
-  public void setTelephone(long telephone) {
-    this.telephone = telephone;
-  }
-
-
-  public long getCoountryCode() {
-    return coountryCode;
-  }
-
-  public void setCoountryCode(long coountryCode) {
-    this.coountryCode = coountryCode;
-  }
-
-
-  public String getUsername() {
-    return username;
-  }
-
-  @Override
-  public boolean isAccountNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isAccountNonLocked() {
-    return true;
-  }
-
-  @Override
-  public boolean isCredentialsNonExpired() {
-    return true;
-  }
-
-  @Override
-  public boolean isEnabled() {
-    return true;
-  }
-
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return Arrays.asList(role);
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-
-  public long getIdTown() {
-    return idTown;
-  }
-
-  public void setIdTown(long idTown) {
-    this.idTown = idTown;
-  }
-
-
-  public long getIdRole() {
-    return idRole;
-  }
-
-  public void setIdRole(long idRole) {
-    this.idRole = idRole;
-  }
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return Arrays.asList(role);
+    }
 
 }

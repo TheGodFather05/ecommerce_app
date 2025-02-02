@@ -2,6 +2,8 @@ package com.ecommerce.api.entity.category;
 
 
 import com.ecommerce.api.entity.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +11,8 @@ import java.util.Set;
 
 @Entity
 @Table
+@Getter
+@Setter
 public class SubcategoryProperties extends BaseEntity {
 
   @Column
@@ -21,30 +25,4 @@ public class SubcategoryProperties extends BaseEntity {
   @OneToMany(mappedBy = "id_Property")
   private Set<SubcategoryPropertyValue>values=new HashSet<>();
 
-
-  public long getIdSubcategory() {
-    return idSubcategory;
-  }
-
-  public void setIdSubcategory(long idSubcategory) {
-    this.idSubcategory = idSubcategory;
-  }
-
-
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-
-  public SubCategory getSubCategory() {
-    return subCategory;
-  }
-
-  public void setSubCategory(SubCategory subCategory) {
-    this.subCategory = subCategory;
-  }
 }

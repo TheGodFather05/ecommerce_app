@@ -4,9 +4,13 @@ package com.ecommerce.api.entity.translate;
 import com.ecommerce.api.entity.BaseEntity;
 import com.ecommerce.api.entity.product.Product;
 import com.ecommerce.api.entity.translate.Language;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
+@Setter
+@Getter
 @Entity
 @Table
 public class ProductTranslate extends BaseEntity {
@@ -15,10 +19,6 @@ public class ProductTranslate extends BaseEntity {
   private String name;
   @Column
   private String description;
-  @Column
-  private long idProduct;
-  @Column
-  private long idLanguage;
   @ManyToOne
   @JoinColumn(name = "id_Product")
   private Product product;
@@ -27,55 +27,4 @@ public class ProductTranslate extends BaseEntity {
   private Language language;
 
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-
-  public long getIdProduct() {
-    return idProduct;
-  }
-
-  public void setIdProduct(long idProduct) {
-    this.idProduct = idProduct;
-  }
-
-
-  public long getIdLanguage() {
-    return idLanguage;
-  }
-
-  public void setIdLanguage(long idLanguage) {
-    this.idLanguage = idLanguage;
-  }
-
-
-  public Product getProduct() {
-    return product;
-  }
-
-  public void setProduct(Product product) {
-    this.product = product;
-  }
-
-  public Language getLanguage() {
-    return language;
-  }
-
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
 }
