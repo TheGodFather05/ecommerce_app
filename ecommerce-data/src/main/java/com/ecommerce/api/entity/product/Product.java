@@ -2,6 +2,7 @@ package com.ecommerce.api.entity.product;
 
 
 import com.ecommerce.api.entity.BaseEntity;
+import com.ecommerce.api.entity.business.Business;
 import com.ecommerce.api.entity.category.*;
 import com.ecommerce.api.entity.user.User;
 import lombok.Getter;
@@ -48,6 +49,9 @@ public class Product extends BaseEntity {
     @OneToMany
     @JoinColumn(name = "id_user")
     private Set<ProductCategoryProperty> categoryProperties = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "id_business")
+    private Business business;
 
 
 }
